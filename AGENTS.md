@@ -89,9 +89,9 @@
   - Avoid destructive git operations; do not `reset --hard` or force-push without explicit permission.
 
 - Useful commands summary (copy-paste):
-  - Setup venv: `uv venv .venv` or `python -m venv .venv`
+  - Setup venv with uv: `uv venv .venv`
   - Activate: `source .venv/bin/activate`
-  - Install deps: `uv add requests pycryptodome` or `pip install -r requirements.txt`
+  - Install deps with uv: `uv add requests pycryptodome` (or `pip install -r requirements.txt`)
   - Run CLI: `nsfc-final-report search --keyword 心肌 --page 0 --size 10`
   - Run single pytest test: `pytest tests/test_module.py::test_name -q`
   - Format: `black . && isort .`

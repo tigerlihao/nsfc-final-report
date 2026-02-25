@@ -26,8 +26,22 @@ Behavior notes:
    secret in repository secrets and inject it into the job environment rather than committing it to source.
 
 Development:
-- Create venv with uv: uv venv .venv
-- Install deps with uv: uv add requests pycryptodome
+- Create venv with uv: `uv venv .venv`
+- Install deps with uv: `uv add requests pycryptodome`
+- Run tests locally with uv-created venv:
+  - `uv venv .venv` (first time)
+  - `. .venv/bin/activate`
+  - `pytest -q` or use `uv` to add test deps: `uv add pytest` then `pytest -q`
+  - Or run the combined uv task: `uv test` (runs tests with coverage)
+
+Formatting & publishing:
+- Format code in-place with `uv format` (runs `ruff format`, `isort`, `black`).
+- Build package: `uv publish` creates `dist/` using `python -m build`.
+- To upload to PyPI via `uv publish`, set `UPLOAD=true` and provide `TWINE_USERNAME`/`TWINE_PASSWORD` (or configure CI secrets). Example:
+  - `UPLOAD=true uv publish`
+
+CI note:
+- The repository CI installs `uv`, creates `.venv` using `uv venv .venv` and runs linters/tests inside that venv. This keeps local and CI workflows consistent.
 
 Security:
 - Do not commit sensitive keys if you prefer to move IFROMC86 to an environment variable.
