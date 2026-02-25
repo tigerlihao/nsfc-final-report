@@ -1,16 +1,13 @@
-import requests
-from Crypto.Cipher import DES
 import base64
+import logging
 import os
 import time
-from typing import Optional, List, Dict
+from typing import Dict, List, Optional
+
+import requests
+from Crypto.Cipher import DES
 
 DEFAULT_BASE = "https://kd.nsfc.cn"
-
-# DES key: prefer environment variable `NSFC_DES_KEY` (must be 8 bytes). If not set,
-# fall back to the historical hard-coded key for backward compatibility but emit a
-# warning so maintainers migrate secrets into environment/configuration.
-import logging
 
 _env_key = os.environ.get("NSFC_DES_KEY")
 if _env_key:

@@ -1,6 +1,5 @@
 import os
 import runpy
-import subprocess
 
 
 def test_find_pages_sorted(tmp_path):

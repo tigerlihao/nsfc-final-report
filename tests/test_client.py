@@ -1,6 +1,7 @@
 import base64
 import json
 import os
+
 from Crypto.Cipher import DES
 
 import nsfc_final_report.client as client_mod
