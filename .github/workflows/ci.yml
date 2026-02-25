@@ -27,7 +27,7 @@ jobs:
           uv venv .venv
           # activate the venv for the rest of this step
           . .venv/bin/activate
-          # use uv tasks from pyproject.toml to install deps
+          # use uv tasks from uv.toml to install deps
           uv install || (
             # fallback: install test tools and package
             pip install -e . && pip install pytest pytest-cov ruff black isort
@@ -42,8 +42,15 @@ jobs:
           key: ${{ runner.os }}-pip-${{ env.PIP_CACHE_KEY }}
           restore-keys: |
             ${{ runner.os }}-pip-
-      - name: Run CI task (venv -> install -> lint -> test)
+      - name: Run linters
         run: |
           . .venv/bin/activate
-          # run combined ci task from pyproject (falls back to individual steps)
-          uv ci || ( uv venv .venv && uv install && uv lint && uv test )
+          # run linters directly (do not use uv to run tests/lint)
+          ruff check .
+          black --check .
+          isort --check-only .
+      - name: Run tests
+        run: |
+          . .venv/bin/activate
+          # run tests directly with pytest (uv only used for venv + deps)
+          pytest -q --cov=nsfc_final_report --cov-report=term-missing
