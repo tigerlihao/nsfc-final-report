@@ -1,0 +1,8 @@
+[tool.uv.tasks]
+venv = "uv venv .venv"
+install = "uv add pytest pytest-cov ruff black isort || python -m pip install -r requirements.txt"
+lint = "ruff check . && black --check . && isort --check-only ."
+test = "pytest -q --cov=nsfc_final_report --cov-report=term-missing"
+ci = "uv venv .venv && uv install && uv lint && uv test"
+format = "ruff format . && isort . && black ."
+publish = "python -m pip install --upgrade pip && python -m pip install build twine && python -m build && if [ \"${UPLOAD:-}\" = \"true\" ]; then twine upload dist/*; else echo 'Build complete. To upload set UPLOAD=true and provide TWINE_USERNAME/TWINE_PASSWORD (or use CI secrets)'; fi"
