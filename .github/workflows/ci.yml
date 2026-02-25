@@ -27,11 +27,8 @@ jobs:
           uv venv .venv
           # activate the venv for the rest of this step
           . .venv/bin/activate
-          # use uv tasks from uv.toml to install deps
-          uv install || (
-            # fallback: install test tools and package
-            pip install -e . && pip install pytest pytest-cov ruff black isort
-          )
+          # install project + dev deps
+          uv pip install -e ".[dev]"
         # cache pip and venv to speed up CI
       - name: Cache pip and .venv
         uses: actions/cache@v4

@@ -30,11 +30,10 @@ case "$task" in
   install)
     . .venv/bin/activate
     if command -v uv >/dev/null 2>&1; then
-      uv add pytest pytest-cov ruff black isort || python -m pip install -r requirements.txt
+      uv pip install -e ".[dev]" || python -m pip install -r requirements.txt
     else
       python -m pip install -r requirements.txt || python -m pip install pytest pytest-cov ruff black isort
     fi
-    python -m pip install -e .
     ;;
   lint)
     . .venv/bin/activate

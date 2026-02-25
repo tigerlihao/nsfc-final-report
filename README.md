@@ -27,14 +27,15 @@ Behavior notes:
 
 Development:
 - Create venv with uv: `uv venv .venv`
-- Install deps with uv: `uv add requests pycryptodome`
+- Install deps with uv: `uv pip install -e .`
 - Run tests locally with uv-created venv:
   - `uv venv .venv` (first time)
   - `. .venv/bin/activate`
-  - Install test deps with uv if you like: `uv add pytest` then run tests directly with `pytest -q`
+  - Install dev deps with uv: `uv pip install -e ".[dev]"` then run tests directly with `pytest -q`
 
 Formatting & publishing:
 - Format code in-place with `./scripts/uv_tasks.sh format` (or `uv add` + run format commands manually).
+- If you do not use `uv`, you can install runtime deps with `pip install -e .` and dev deps with `pip install -e ".[dev]"`.
 - Build package: `./scripts/uv_tasks.sh publish` creates `dist/` using `python -m build`.
 - To upload to PyPI via the script, set `UPLOAD=true` and provide `TWINE_USERNAME`/`TWINE_PASSWORD` (or configure CI secrets). Example:
   - `UPLOAD=true ./scripts/uv_tasks.sh publish`

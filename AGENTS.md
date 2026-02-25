@@ -4,7 +4,8 @@
 - Quick setup: create a Python venv, install deps, activate it.
   - `uv venv .venv` (project uses `uv` in README) or `python -m venv .venv`
   - `source .venv/bin/activate`
-  - Install deps: `uv add requests pycryptodome` or `pip install -r requirements.txt` if a requirements file exists.
+- Install deps: `uv pip install -e .` or `pip install -e .`.
+  - For dev/test deps: `uv pip install -e ".[dev]"` (or `pip install -e ".[dev]"`).
 
 - Build / Run commands (project is a Python CLI):
   - Run the CLI tool: `nsfc-final-report <command> [args]` (see `README.md`)
@@ -91,7 +92,7 @@
 - Useful commands summary (copy-paste):
   - Setup venv with uv: `uv venv .venv`
   - Activate: `source .venv/bin/activate`
-  - Install deps with uv: `uv add requests pycryptodome` (or `pip install -r requirements.txt`)
+- Install deps with uv: `uv pip install -e .` (or `pip install -e .`)
   - Run CLI: `nsfc-final-report search --keyword 心肌 --page 0 --size 10`
   - Run single pytest test: `pytest tests/test_module.py::test_name -q`
   - Format: `black . && isort .`
