@@ -1,0 +1,13 @@
+[project]
+name = "nsfc_final_report"
+version = "0.1.0"
+description = "NSFC final report search and download utilities"
+
+requires-python = ">=3.10"
+dependencies = [
+    "pycryptodome>=3.23.0",
+    "requests>=2.32.5",
+]
+
+[project.scripts]
+nsfc-final-report = "nsfc_final_report.cli:main"
